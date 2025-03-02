@@ -69,5 +69,3 @@ def login_selector(instance, server):
     userpw = get_userpw(instance, server)
     
     print(modified_url, userid, userpw)
-    
-login_selector("jp1", "real")
