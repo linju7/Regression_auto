@@ -5,12 +5,13 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from login import login, open_url
+from contacts import contact_create
 
 
 # 테스트 환경 설정
 server = "real"
 instance = "jp2"
-is_admin = True
+is_admin = False
 
 
 
@@ -28,9 +29,9 @@ def main():
         #로그인
         page = login.login(page, instance, server, is_admin)
     
-        # 페이지 이동
-        page = open_url.open_url(page, instance, server, is_admin=False)
-        
+        #구성원 추가
+        page = contact_create.contact_create(page,instance,server)
+       
         # 브라우저 유지 
         page.pause()
         

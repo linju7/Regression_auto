@@ -34,7 +34,7 @@ def get_url(instance, server, is_admin) :
 def open_url(page, instance, server, is_admin):
     url = get_url(instance, server, is_admin)
     try:
-        page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        page.goto(url, wait_until="domcontentloaded", timeout=6000)
         print(f"✅ 페이지 이동 성공: {page.url}")
     except Exception as e:
         print(f"❌ 페이지 이동 실패: {e}")
