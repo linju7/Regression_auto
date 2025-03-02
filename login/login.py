@@ -32,13 +32,18 @@ def login_web(url, userid, userpw):
         browser.close()
 
 #인스턴스 + 서버로 url 조정 
-def get_url(instance, server) :
+def get_url(instance, server, is_admin) :
     ret = "https://"
     
     if server == "alpha" :
         ret += urls.alpha
     elif server == "stage" :
         ret += urls.stage
+        
+    if is_admin :
+        ret += urls.admin
+    else :
+        ret += urls.service
         
     if instance in ["kr1", "jp1", "jp2"] :
         ret += urls.naverworks
@@ -79,8 +84,8 @@ def get_userpw(instance) :
     return ret 
     
 ##인스턴스 + 서버 입력으로 파라미터 값 조정 
-def login(instance, server):
-    url = get_url(instance, server)
+def login(instance, server, is_admin):
+    url = get_url(instance, server, is_admin)
     userid = get_userid(instance, server)
     userpw = get_userpw(instance)
     
