@@ -1,5 +1,5 @@
 #보안파일
-security.py
+security/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
