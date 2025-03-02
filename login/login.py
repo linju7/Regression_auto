@@ -1,54 +1,36 @@
-from playwright.sync_api import sync_playwright
+'''
+    login(page, instance, server, is_admin)
+    
+    page : 현재 열려있는 브라우저 객체
+    인스턴스 : 국가 코드 값, string (ex. kr1, jp1, jp2)
+    서버 : alpha, stage, real
+    is_admin : 불리언 값
+    
+    인지할 내용
+    - 로그인 함수에서 url을 재연산하고 있음 > 로드 되는 동안 기다려야 하기 때문, 추후 최적화 로직 생각하기
+
+'''
+
 
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from security import accounts, urls
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from security import accounts
+from open_url import get_url
 
 
-
-def login_web(url, userid, userpw):
-    with sync_playwright() as p:
-
-        # Chromium 브라우저 실행
-        browser = p.chromium.launch(headless=False) 
-        page = browser.new_page()  
-        
-        # url 이동 
-        page.goto(url)
-        
-        # id 입력 후 로그인 버튼 선택
-        page.fill("#user_id", userid)
-        page.click("#loginStart")
-
-        # pw 입력 후 최종 로그인 버튼 선택 
-        page.fill("#user_pwd", userpw)
-        page.click("#loginBtn")
-        
-        # 브라우저 유지
-        page.pause()
-        
-        # 브라우저 종료 (ENTER 입력 시 종료)
-        browser.close()
-
-#인스턴스 + 서버로 url 조정 
-def get_url(instance, server, is_admin) :
-    ret = "https://"
+# 로그인을 수행하는 함수
+def login_web(page, userid, userpw):
+    page.fill("#user_id", userid)
+    page.click("#loginStart")
     
-    if server == "alpha" :
-        ret += urls.alpha
-    elif server == "stage" :
-        ret += urls.stage
-        
-    if is_admin :
-        ret += urls.admin
-    else :
-        ret += urls.service
-        
-    if instance in ["kr1", "jp1", "jp2"] :
-        ret += urls.naverworks
-    
-    return ret
+    page.fill("#user_pwd", userpw)
+    page.click("#loginBtn")
+
+    return page
+
 
 #인스턴스 + 서버로 id 분류
 def get_userid(instance, server):
@@ -83,10 +65,19 @@ def get_userpw(instance) :
     
     return ret 
     
-##인스턴스 + 서버 입력으로 파라미터 값 조정 
-def login(instance, server, is_admin):
-    url = get_url(instance, server, is_admin)
+    
+    
+#로그인 함수 호출부
+def login(page,instance, server, is_admin):
     userid = get_userid(instance, server)
     userpw = get_userpw(instance)
+    url = get_url(instance,server,is_admin)
     
-    login_web(url,userid, userpw)
+    page = login_web(page, userid, userpw)
+    try:
+        page.wait_for_url(url, timeout=60000)  # 최대 60초 대기
+        print(f"✅ 로그인 후 최종 URL 로딩 완료: {page.url}")
+    except Exception as e:
+        print(f"❌ 로그인 후 URL 대기 실패: {e}")
+    
+    return page
