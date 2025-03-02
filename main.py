@@ -6,11 +6,11 @@ from login import login
 
 
 # 테스트 환경 설정
-server = "stage"
+server = "real"
 instance = "jp2"
 
 
 
 
 #수행
-login.login_selector(instance, server)
+login.login(instance, server)
