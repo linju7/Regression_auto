@@ -76,7 +76,7 @@ def login(page,instance, server, is_admin):
     
     page = login_web(page, userid, userpw)
     try:
-        page.wait_for_url(re.compile(re.escape(url)), timeout=6000)  # 최대 60초 대기
+        page.wait_for_url(re.compile(re.escape(url)), timeout=6000)  # 최대 6초 대기
         print(f"✅ 로그인 후 최종 URL 로딩 완료: {page.url}")
     except Exception as e:
         print(f"❌ 로그인 후 URL 대기 실패: {e}")
