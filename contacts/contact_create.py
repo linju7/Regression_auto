@@ -22,17 +22,28 @@ def fill_field(page):
     page.locator('input.lw_input[placeholder="이름"][maxlength="80"]').fill(timestamp)
     
     # 다국어
-    page.locator('input.lw_input[placeholder="姓(日本語)"]').fill("일본어성")
-    page.locator('input.lw_input[placeholder="名(日本語)"]').fill("일본어이름")
-    page.locator('input.lw_input[placeholder="Last"]').fill("영어성")
-    page.locator('input.lw_input[placeholder="First"]').fill("영어이름")
-    page.locator('input.lw_input[placeholder="성"][maxlength="100"]').fill("한국어성")
-    page.locator('input.lw_input[placeholder="이름"][maxlength="100"]').fill("한국어이름")
-    page.locator('input.lw_input[placeholder="姓(简体中文)"]').fill("번체성")
-    page.locator('input.lw_input[placeholder="名(简体中文)"]').fill("번체이름")
-    page.locator('input.lw_input[placeholder="姓(繁體中文)"]').fill("간체성")
-    page.locator('input.lw_input[placeholder="名(繁體中文)"]').fill("간체이름")
-
+    # 다국어 off 시 입력란이 없기 때문에, 조건문으로 존재하는지 체크를 하는 로직 추가함 
+    if page.locator('input.lw_input[placeholder="姓(日本語)"]').count() > 0:
+        page.locator('input.lw_input[placeholder="姓(日本語)"]').fill("일본어성")
+    if page.locator('input.lw_input[placeholder="名(日本語)"]').count() > 0:
+        page.locator('input.lw_input[placeholder="名(日本語)"]').fill("일본어이름")
+    if page.locator('input.lw_input[placeholder="Last"]').count() > 0:
+        page.locator('input.lw_input[placeholder="Last"]').fill("영어성")
+    if page.locator('input.lw_input[placeholder="First"]').count() > 0:
+        page.locator('input.lw_input[placeholder="First"]').fill("영어이름")
+    if page.locator('input.lw_input[placeholder="성"][maxlength="100"]').count() > 0:
+        page.locator('input.lw_input[placeholder="성"][maxlength="100"]').fill("한국어성")
+    if page.locator('input.lw_input[placeholder="이름"][maxlength="100"]').count() > 0:
+        page.locator('input.lw_input[placeholder="이름"][maxlength="100"]').fill("한국어이름")
+    if page.locator('input.lw_input[placeholder="姓(简体中文)"]').count() > 0:
+        page.locator('input.lw_input[placeholder="姓(简体中文)"]').fill("번체성")
+    if page.locator('input.lw_input[placeholder="名(简体中文)"]').count() > 0:
+        page.locator('input.lw_input[placeholder="名(简体中文)"]').fill("번체이름")
+    if page.locator('input.lw_input[placeholder="姓(繁體中文)"]').count() > 0:
+        page.locator('input.lw_input[placeholder="姓(繁體中文)"]').fill("간체성")
+    if page.locator('input.lw_input[placeholder="名(繁體中文)"]').count() > 0:
+        page.locator('input.lw_input[placeholder="名(繁體中文)"]').fill("간체이름")
+        
     # 닉네임
     page.locator('input.lw_input[placeholder="닉네임"]').fill("자동화_닉네임")
     
@@ -119,6 +130,12 @@ def access_contact_create(page) :
     button.click() 
     
     return page
+
+def click_save(page) :
+    page.locator('button.lw_btn_point:text-is("추가")').click()
+    page.locator('button.lw_btn:text-is("확인")').click()
+    
+    return page
     
 
 def contact_create(page, instance, server) :
@@ -126,5 +143,6 @@ def contact_create(page, instance, server) :
     
     page = access_contact_create(page)
     page = fill_field(page)
+    page = click_save(page)
 
     return page
