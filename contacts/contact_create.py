@@ -143,6 +143,6 @@ def contact_create(page, instance, server) :
     
     page = access_contact_create(page)
     page = fill_field(page)
-    page = click_save(page)
+    #page = click_save(page)
 
     return page
