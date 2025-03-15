@@ -120,7 +120,7 @@ def fill_field(page):
     
     return page
 
-def access_contact_create(page) :
+def access_create_contact(page) :
     #구성원 페이지 접근 버튼
     button = page.locator('a.shortcut_link:has(strong.shortcut_title:text-is("구성원"))')
     button.click() 
@@ -138,7 +138,7 @@ def click_save(page) :
     return page
     
 
-def contact_create(page, instance, server) :
+def create_contact(page, instance, server) :
     page = open_url.open_url(page, instance, server, is_admin = True)
     
     page = access_contact_create(page)

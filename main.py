@@ -4,9 +4,17 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+#로그인, 페이지 이동
 from login import login, open_url
-from contacts import contact_create
-from contacts import external_contact_create
+
+#구성원 생성 
+from contacts import create_contact        
+
+#외부 연락처 생성 
+from contacts import create_external_contact
+
+# 내부 그룹 + 서비스 생성
+from groups import create_group_service
 
 
 # 테스트 환경 설정
@@ -35,12 +43,13 @@ def main():
         page = login.login(page, instance, server, is_admin)
     
         #구성원 추가
-        #page = contact_create.contact_create(page,instance,server)
+        #page = create_contact.create_contact(page,instance,server)
         
         #외부 연락처 추가
-        page = external_contact_create.external_contact_create(page,instance,server)
+        #page = create_external_contact.create_external_contact(page,instance,server)
 
-
+        # 그룹 추가
+        page = create_group_service.create_group_service(page,instance,server)
 
 
         #-----------------브라우저 유지-----------------

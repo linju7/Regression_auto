@@ -62,7 +62,7 @@ def fill_field(page):
     
     return page
 
-def access_external_contact_create(page) :
+def access_create_external_contact(page) :
     # "새로 만들기" 버튼 클릭
     page.locator('a.skin_corp_bg.skin_corp_txt.has_dropdown:has-text("새로 만들기")').click()
     
@@ -77,7 +77,7 @@ def click_save(page) :
     return page
     
 
-def external_contact_create(page, instance, server) :
+def create_external_contact(page, instance, server) :
     page = open_url.open_url(page, instance, server, is_admin = False)
     
     page = access_external_contact_create(page)
