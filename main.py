@@ -19,6 +19,9 @@ from groups import create_group_service
 # 외부 그룹 + 서비스 생성
 from groups import create_external_group_service
 
+# 조직 생성
+from organizations import create_organization
+
 
 # 테스트 환경 설정
 server = "real"
@@ -55,8 +58,10 @@ def main():
         #page = create_group_service.create_group_service(page,instance,server)
         
         # 외부 그룹 추가
-        page = create_external_group_service.create_external_group_service(page,instance,server)
+        #page = create_external_group_service.create_external_group_service(page,instance,server)
 
+        # 조직 추가
+        page = create_organization.create_organization(page,instance,server)
 
         #-----------------브라우저 유지-----------------
         # 브라우저 유지 

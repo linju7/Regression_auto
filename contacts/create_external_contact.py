@@ -37,12 +37,6 @@ def fill_field(page):
     # 이메일
     page.locator('input[placeholder="이메일"][maxlength="256"]').fill(f"test_{timestamp}@example.com")
     
-    # 주소
-    # page.locator('div.selectbox').nth(1).click()  # 두 번째 selectbox 요소 클릭
-    # page.locator('ul > li:has-text("직접입력")').click()  
-    # page.locator('input[placeholder="우편번호"][maxlength="20"]').fill("12345")
-    # page.locator('input[placeholder="주소"][maxlength="100"]').fill("서울특별시 강남구 테헤란로 123")
-    
     # 홈페이지
     page.locator('input[placeholder="URL"][maxlength="100"]').fill("https://example.com")
     
@@ -59,6 +53,14 @@ def fill_field(page):
     
     # 메모
     page.locator('textarea[placeholder="메모(최대 4,000자)"][maxlength="4000"]').fill("자동화 테스트 메모")
+    
+    
+    # TODO : 주소, 공개범위, 편집 허용, 태그 추가 필요
+    # 주소
+    # page.locator('div.selectbox').nth(1).click()  # 두 번째 selectbox 요소 클릭
+    # page.locator('ul > li:has-text("직접입력")').click()  
+    # page.locator('input[placeholder="우편번호"][maxlength="20"]').fill("12345")
+    # page.locator('input[placeholder="주소"][maxlength="100"]').fill("서울특별시 강남구 테헤란로 123")
     
     return page
 

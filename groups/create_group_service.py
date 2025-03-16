@@ -45,6 +45,8 @@ def fill_field(page):
     
     # 설명
     page.locator('textarea[placeholder="설명을 입력해주세요."]').fill(f"자동화로 생성된 그룹입니다. (준일)")
+    
+    # TODO : 마스터/멤버, 메시지방 기능, 고급설정, 외부메일, 공개설정, 알림보내기 구현 필요
 
     return page
 

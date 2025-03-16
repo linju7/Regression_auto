@@ -118,6 +118,9 @@ def fill_field(page):
     page.locator('input[placeholder="비밀번호"]').fill(accounts.nw_pw)
     page.locator('label[for="check01"]').click()
     
+    
+    # TODO: 비밀번호 옵션, 활성화 옵션, 라이선스 옵션 추가 필요
+    
     return page
 
 def access_create_contact(page) :
