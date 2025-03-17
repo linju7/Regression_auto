@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 #로그인, 페이지 이동
-from login import login, open_url
+from login_and_url import login, open_url
 
 #구성원 생성 
 from contacts import create_contact        
@@ -22,6 +22,8 @@ from groups import create_external_group_service
 # 조직 생성
 from organizations import create_organization
 
+# 직책 생성
+from contact_ability import create_position
 
 # 테스트 환경 설정
 server = "real"
@@ -61,7 +63,10 @@ def main():
         #page = create_external_group_service.create_external_group_service(page,instance,server)
 
         # 조직 추가
-        page = create_organization.create_organization(page,instance,server)
+        #page = create_organization.create_organization(page,instance,server)
+        
+        # 직책 추가
+        page = create_position.create_position(page,instance,server)
 
         #-----------------브라우저 유지-----------------
         # 브라우저 유지 

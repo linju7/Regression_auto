@@ -12,7 +12,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from security import accounts, urls
 
-#인스턴스 + 서버로 url 조정 
+#서버값으로 url 조정
 def get_url(instance, server, url) :
     ret = "https://"
     
