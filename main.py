@@ -23,7 +23,7 @@ from groups import create_external_group_service
 from organizations import create_organization
 
 # 직책 생성
-from contact_ability import create_position
+from contact_ability import create_position, create_level
 
 # 테스트 환경 설정
 server = "real"
@@ -66,7 +66,10 @@ def main():
         #page = create_organization.create_organization(page,instance,server)
         
         # 직책 추가
-        page = create_position.create_position(page,instance,server)
+        #page = create_position.create_position(page,instance,server)
+
+        # 직급 추가
+        page = create_level.create_level(page,instance,server)
 
         #-----------------브라우저 유지-----------------
         # 브라우저 유지 
