@@ -22,8 +22,8 @@ from groups import create_external_group_service
 # 조직 생성
 from organizations import create_organization
 
-# 직책/직급/사용자유형 생성
-from contact_ability import create_position, create_level, create_usertype
+# 직책/직급/사용자유형/상태 생성
+from contact_ability import create_position, create_level, create_usertype, create_status
 
 # 테스트 환경 설정
 server = "real"
@@ -72,7 +72,10 @@ def main():
         #page = create_level.create_level(page,instance,server)
 
         # 사용자 유형 추가
-        page = create_usertype.create_usertype(page,instance,server)
+        # page = create_usertype.create_usertype(page,instance,server)
+        
+        # 상태 추가
+        page = create_status.create_status(page,instance,server)
 
         #-----------------브라우저 유지-----------------
         # 브라우저 유지 
